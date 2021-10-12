@@ -6,7 +6,7 @@ import java.util.NoSuchElementException;
 public class ListStack<E> implements Iterable<E> {
     private Node<E> head;
 
-    public ListStack(Node<E> head) {
+    public ListStack(final Node<E> head) {
         this.head = head;
     }
 
@@ -17,12 +17,12 @@ public class ListStack<E> implements Iterable<E> {
         return head;
     }
 
-    public void setHead(Node<E> head) {
+    public void setHead(final Node<E> head) {
         this.head = head;
     }
 
-    public void add(E value) {
-        Node<E> temp = new Node<>();
+    public void add(final E value) {
+        final Node<E> temp = new Node<>();
         temp.setValue(value);
         temp.setNext(head);
         head = temp;
@@ -32,18 +32,12 @@ public class ListStack<E> implements Iterable<E> {
     public void delete() {
         if (head == null)
             throw new NoSuchElementException();
-        Node<E> temp = head.getNext();
+        final Node<E> temp = head.getNext();
         head = temp;
     }
 
     public void clean() {
-        if (head == null)
-            throw new NoSuchElementException();
-        while (head != null) {
-            Node<E> temp = head.getNext();
-            head = temp;
-
-        }
+        head = null;
     }
 
     public void print() {
@@ -70,7 +64,7 @@ public class ListStack<E> implements Iterable<E> {
 
         @Override
         public E next() {
-            E value = next.getValue();
+            final E value = next.getValue();
             next = next.getNext();
             return value;
         }

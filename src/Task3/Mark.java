@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Mark {
     public List<Integer> mark = new ArrayList<>();
 
-    public Mark(List<Integer> list) {
+    public Mark(final List<Integer> list) {
         this.mark = list;
     }
 
@@ -17,7 +17,7 @@ public class Mark {
         return mark;
     }
 
-    public void setMark(List<Integer> mark) {
+    public void setMark(final List<Integer> mark) {
         this.mark = mark;
     }
 

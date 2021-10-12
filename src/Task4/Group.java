@@ -3,9 +3,9 @@ package Task4;
 import java.util.*;
 
 public class Group {
-    private List<Student> students = new ArrayList<>();
+    private List<Student> students;
 
-    public Group(List<Student> students) {
+    public Group(final List<Student> students) {
         this.students = students;
     }
 
@@ -13,61 +13,64 @@ public class Group {
         return students;
     }
 
-    public void setStudents(List<Student> students) {
+    public void setStudents(final List<Student> students) {
         this.students = students;
     }
 
-    public void addSubject(List<Subject> subjects, String name) {
-        Subject subject = new Subject(name);
+    public void addSubject(final List<Subject> subjects, final String name) {
+        final Subject subject = new Subject(name);
         subjects.add(subject);
 
-        Mark[] mark = new Mark[students.size()];
+        final List<Mark> mark = new ArrayList<>(students.size());
+        for (int i = 0;i< students.size();i++) {
+            final  Mark mark1 = new Mark();
+            mark.add(mark1);
+        }
+
         for (int i = 0; i < students.size(); i++) {
-            students.get(i).getMarks().add(mark[i] = new Mark());
+            students.get(i).getMarks().add(mark.get(i));
         }
     }
 
     public void printMap(final Subject subject) {
-        Map<Long, List<Integer>> map = new TreeMap<>();
-        for (Student student : getStudents()) {
-            int index = student.getSubject().indexOf(subject);
+        final Map<Long, List<Integer>> map = new TreeMap<>();
+        for (final Student student : getStudents()) {
+            final int index = student.getSubject().indexOf(subject);
             map.put(student.getId(), student.getMarks().get(index).getMark());
         }
         System.out.println(map);
     }
 
-    public String bestStudent() {
+    public Student bestStudent() {
         int tmp = 0;
         int result = 0;
-        String res = "";
+        Student studentTmp = students.get(0);
 
-        for (Student student : students) {
+        for (final Student student : students) {
             int count = 0;
-            for (Subject subject : student.getSubject()) {
-                for (Integer txt : student.getMarks().get(student.getSubject().indexOf(subject)).getMark()) {
+            for (final Subject subject : student.getSubject()) {
+                for (final Integer value : student.getMarks().get(student.getSubject().indexOf(subject)).getMark()) {
                     count++;
-                    tmp += txt;
+                    tmp += value;
                 }
             }
             if (tmp / count > result) {
                 result = tmp;
-                res = "ID = " + student.getId()
-                        + " Name = " + student.getName()
-                        + " Surname = " + student.getSurName();
+                studentTmp = student;
             }
         }
-        return res;
+        return studentTmp;
     }
 
     @Override
     public String toString() {
         String res = "";                                       // Вивід інформації про студентів
-        for (Student student : students) {
+        for (final Student student : students) {
             res += "Student { " + "name= " + student.getName() +
                     ", surName= " + student.getSurName();
-            for (Subject subject : student.getSubject()) {
+            for (final Subject subject : student.getSubject()) {
                 res += ", subject= " + subject.getNameSubject() + "{ ";
-                for (Integer txt : student.getMarks().get(student.getSubject().indexOf(subject)).getMark())
+                for (final Integer txt : student.getMarks().get(student.getSubject().indexOf(subject)).getMark())
                     res += txt + " ";
                 res += "}";
             }

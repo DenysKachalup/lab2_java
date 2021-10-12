@@ -11,11 +11,33 @@ public class Student {
     private List<Subject> subject;
     private List<Mark> marks;
 
+    public Student(final String name, final String surName) {
+        this.name = name;
+        this.surName = surName;
+        this.marks = setMarkSubject();
+        this.id = Student.idStatic++;
+    }
+
+    public Student(final String name, final String surName, final List<Subject> subject) {
+        this.name = name;
+        this.surName = surName;
+        this.subject = subject;
+        this.marks = setMarkSubject();
+        this.id = Student.idStatic++;
+    }
+    public static long getIdStatic() {
+        return idStatic;
+    }
+
+    public static void setIdStatic(final long idStatic) {
+        Student.idStatic = idStatic;
+    }
+
     public long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(final long id) {
         this.id = id;
     }
 
@@ -23,33 +45,11 @@ public class Student {
         return marks;
     }
 
-    public Student(String name, String surName) {
-        this.name = name;
-        this.surName = surName;
-        this.id = Student.idStatic++;
-    }
-
-    public static long getIdStatic() {
-        return idStatic;
-    }
-
-    public static void setIdStatic(long idStatic) {
-        Student.idStatic = idStatic;
-    }
-
-    public Student(String name, String surName, List<Subject> subject) {
-        this.name = name;
-        this.surName = surName;
-        this.subject = subject;
-        this.marks = setMarkSubject();
-        this.id = Student.idStatic++;
-    }
-
     public List<Subject> getSubject() {
         return subject;
     }
 
-    public void setSubject(List<Subject> subject) {
+    public void setSubject(final List<Subject> subject) {
         this.subject = subject;
     }
 
@@ -57,7 +57,7 @@ public class Student {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
@@ -65,11 +65,11 @@ public class Student {
         return surName;
     }
 
-    public void setSurName(String surName) {
+    public void setSurName(final String surName) {
         this.surName = surName;
     }
 
-    public void addMark(int value, String nameSubject) {
+    public void addMark(final int value, final String nameSubject) {
         for (int i = 0; i < subject.size(); i++) {
             if (subject.get(i).getNameSubject() == nameSubject) {
                 if (value > 12 || value < 0)
@@ -80,28 +80,20 @@ public class Student {
         }
     }
 
-    /*public List<Mark> setMarkSubject() {
-        List<Mark> marks1 = new ArrayList<>();
-
-        Mark mark1 = new Mark();
-        Mark mark2 = new Mark();
-        Mark mark3 = new Mark();
-
-        marks1.add(mark1);
-        marks1.add(mark2);
-        marks1.add(mark3);
-
-        return marks1;
-    }*/
     public List<Mark> setMarkSubject() {
-        List<Mark> marks1 = new ArrayList<>();
-        Mark[] mark1 = new Mark[subject.size()];
+        final List<Mark> marks = new ArrayList<>();
 
         for (int i = 0; i < subject.size(); i++) {
-            mark1[i] = new Mark();
-            marks1.add(mark1[i]);
-            // marks1.add(mark1[i] = new Mark());    // Чи можна так робити?
+            final Mark mark = new Mark();
+            marks.add(mark);
         }
-        return marks1;
+        return marks;
+    }
+
+    @Override
+    public String toString() {
+        return "ID = " + this.getId() +
+                " Name = " + this.getName() +
+                " Surname = " + this.getSurName();
     }
 }

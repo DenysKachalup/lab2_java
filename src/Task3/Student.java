@@ -9,7 +9,7 @@ public class Student {
     private List<Subject> subject;
     private List<Mark> marks;
 
-    public Student(List<Mark> marks) {
+    public Student(final List<Mark> marks) {
         this.marks = marks;
     }
 
@@ -17,16 +17,16 @@ public class Student {
         return marks;
     }
 
-    public void setMarks(List<Mark> marks) {
+    public void setMarks(final List<Mark> marks) {
         this.marks = marks;
     }
 
-    public Student(String name, String surName) {
+    public Student(final String name, final String surName) {
         this.name = name;
         this.surName = surName;
     }
 
-    public Student(String name, String surName, List<Subject> subject) {
+    public Student(final String name, final String surName, final List<Subject> subject) {
         this.name = name;
         this.surName = surName;
         this.subject = subject;
@@ -36,7 +36,7 @@ public class Student {
         return subject;
     }
 
-    public void setSubject(List<Subject> subject) {
+    public void setSubject(final List<Subject> subject) {
         this.subject = subject;
     }
 
@@ -44,7 +44,7 @@ public class Student {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
@@ -52,8 +52,12 @@ public class Student {
         return surName;
     }
 
-    public void setSurName(String surName) {
+    public void setSurName(final String surName) {
         this.surName = surName;
     }
-
+    @Override
+    public String toString() {
+        return " Name = " + this.getName() +
+                " Surname = " + this.getSurName();
+    }
 }

@@ -3,7 +3,7 @@ package Task3;
 public class Subject {
     private String nameSubject;
 
-    public Subject(String nameSubject) {
+    public Subject(final String nameSubject) {
         this.nameSubject = nameSubject;
     }
 
@@ -11,7 +11,7 @@ public class Subject {
         return nameSubject;
     }
 
-    public void setNameSubject(String nameSubject) {
+    public void setNameSubject(final String nameSubject) {
         this.nameSubject = nameSubject;
     }
 }

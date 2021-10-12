@@ -7,7 +7,7 @@ public class Node<E> {
     public Node() {
     }
 
-    public Node(E value, Node<E> next) {
+    public Node(final E value, final Node<E> next) {
         this.value = value;
         this.next = next;
     }
@@ -16,7 +16,7 @@ public class Node<E> {
         return value;
     }
 
-    public void setValue(E value) {
+    public void setValue(final E value) {
         this.value = value;
     }
 
@@ -24,7 +24,7 @@ public class Node<E> {
         return next;
     }
 
-    public void setNext(Node<E> next) {
+    public void setNext(final Node<E> next) {
         this.next = next;
     }
 }
